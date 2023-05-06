@@ -60,15 +60,11 @@ class LilNameNN {
             /*
              * Compute the negative log likelihood loss for each letter in the word.
              * 1. Select probabilities corresponding to the indices from the 'probs' tensor.
-             * 2. Gather the probabilities from 'ys' tensor by reshaping it to a column vector.
-             * 3. Squeeze the tensor to remove dimensions of size 1.
-             * 4. Calculate the natural logarithm of each probability.
-             * 5. Compute the mean of the resulting tensor.
-             * 6. Add L2 regularization to prevent overfitting.
+             * 2. Calculate the natural logarithm of each probability.
+             * 3. Compute the mean of the resulting tensor.
+             * 4. Add L2 regularization to prevent overfitting.
              */
-            auto loss = -probs.index_select(0, indices)
-                             .gather(1, ys.view({-1, 1}))
-                             .squeeze()
+            auto loss = -probs.index({indices, ys})
                              .log()
                              .mean() +
                         W.pow(2).mean() * 1e-3;  // L2 regularization

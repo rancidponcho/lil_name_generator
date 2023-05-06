@@ -2,5 +2,5 @@
 mkdir -p build
 cd build
 cmake -S ../ -B ./
-make && ./lil_name_gen
+make && ./lil_name_generator
 cd ..
