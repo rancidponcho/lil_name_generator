@@ -1,5 +1,5 @@
 # lil_name_generator
 
-Brigram language model written like 4 years ago. Totally forgot how this works.
+Brigram language model written about 4 years ago. Based on Andrej Karpathy's videos.
 
 Depends on pytorch c++ api
